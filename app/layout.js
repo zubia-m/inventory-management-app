@@ -16,32 +16,33 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
       
-        <AppBar position="static" sx={{ bgcolor: '#967969' }}>
-          <Toolbar>
-            <Typography variant="h6" sx={{ flexGrow: 1 }}>
-              Pantry Tracker
-            </Typography>
-            <Button color="inherit" component={Link} href="/">Home</Button>
-            <Button color="inherit" component={Link} href="/about">About</Button>
-            <Button color="inherit" component={Link} href="/contact">Contact</Button>
-          </Toolbar>
-        </AppBar>
+      <Box
+      width="100vw"
+      height="100vh"
+      sx={{ 
+        backgroundImage: 'url(/images/pantry-background.jpg)', // Add your background image
+        backgroundSize: 'area',
+        backgroundPosition: 'center',
+      }}
+    >
+      {/* Header with Menu */}
+      <AppBar position="static" sx={{ bgcolor: '#967969' }}>
+        <Toolbar>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+            Pantry Tracker
+          </Typography>
+          <Button color="inherit">Home</Button>
+          <Button color="inherit">About</Button>
+          <Button color="inherit">Contact</Button>
+        </Toolbar>
+      </AppBar>
         <main>
           <Container>
             {children}
           </Container>
         </main>
-        <Box
-      width="100vw"
-      height="100vh"
-      sx={{ 
-        backgroundImage: 'url(/images/pantry-background.jpg)',  // Add your background image
-        backgroundRepeat: 'repeat',
-        backgroundSize: 'auto',
-        backgroundPosition: 'center',
-      }}
-      >
-    </Box>
+        </Box>
+      
       </body>
     </html>
   );
