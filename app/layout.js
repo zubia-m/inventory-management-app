@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
       height="100vh"
       sx={{ 
         backgroundImage: 'url(/images/pantry-background.jpg)', // Add your background image
-        backgroundSize: 'area',
+        backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
     >
@@ -31,9 +31,9 @@ export default function RootLayout({ children }) {
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             Pantry Tracker
           </Typography>
-          <Button color="inherit">Home</Button>
-          <Button color="inherit">About</Button>
-          <Button color="inherit">Contact</Button>
+          <Button color="inherit" component={Link} href="/">Home</Button>
+          <Button color="inherit" component={Link} href="/about">About</Button>
+          <Button color="inherit" component={Link} href="/contact">Contact</Button>
         </Toolbar>
       </AppBar>
         <main>

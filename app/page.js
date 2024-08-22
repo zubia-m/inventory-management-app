@@ -125,7 +125,7 @@ export default function Home() {
       <Box
         width="800px"
         height="100px"
-        bgcolor={'#ADD8E6'}
+        bgcolor={'#967969'}
         display={'flex'}
         justifyContent={'center'}
         alignItems={'center'}
@@ -152,6 +152,9 @@ export default function Home() {
             <Typography variant={'h3'} color={'#333'} textAlign={'center'}>
               Quantity: {quantity}
             </Typography>
+            <Button variant="contained" onClick={() => addItem(name)}>
+              +1
+            </Button>
             <Button variant="contained" onClick={() => removeItem(name)}>
               Remove
             </Button>
