@@ -3,6 +3,7 @@ import './globals.css';
 import { AppBar, Toolbar, Typography, Button, Container, Box } from '@mui/material';
 import Link from 'next/link';
 import React from 'react';
+import Head from 'next/head';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,34 +15,36 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-      
-      <Box
-      width="100vw"
-      height="100vh"
-      sx={{ 
-        backgroundImage: 'url(/images/pantry-background.jpg)', // Add your background image
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
-      {/* Header with Menu */}
-      <AppBar position="static" sx={{ bgcolor: '#967969' }}>
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Pantry Tracker
-          </Typography>
-          <Button color="inherit" component={Link} href="/">Home</Button>
-        </Toolbar>
-      </AppBar>
-        <main>
-          <Container>
-            {children}
-          </Container>
-        </main>
-        </Box>
-      
-      </body>
+      <Head>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" /> {/* Use your favicon path */}
+      </Head>
+        <body className={inter.className}>
+        
+        
+        <Box
+        width="100vw"
+        height="100vh"
+        sx={{ 
+          backgroundImage: 'url(/images/pantry-background.jpg)', // Add your background image
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        {/* Header with Menu */}
+        <AppBar position="static" sx={{ bgcolor: '#967969' }}>
+          <Toolbar>
+            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+              Pantry Tracker
+            </Typography>
+            <Button color="inherit" component={Link} href="/">Home</Button>
+          </Toolbar>
+        </AppBar>
+          <main>
+              {children}
+          </main>
+          </Box>
+        
+        </body>
     </html>
   );
 }

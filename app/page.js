@@ -20,11 +20,14 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'white',
+  color:"#967969",
   boxShadow: 24,
   p: 4,
   display:'flex',
   flexDirection:'column',
   gap: 3,
+  justifyContent:'center',
+
 };
 
 export default function Home() {
@@ -84,6 +87,7 @@ export default function Home() {
     justifyContent={'center'}
     flexDirection={'column'}
     alignItems={'center'}
+    color="#967969"
     gap={2}
   >
     <Modal
@@ -106,19 +110,20 @@ export default function Home() {
             onChange={(e) => setItemName(e.target.value)}
           />
           <Button
-            variant="outlined"
+            variant="contained"
+            sx={{ bgcolor: '#967969', '&:hover': { bgcolor: '#785a4e' } }}
             onClick={() => {
               addItem(itemName)
               setItemName('')
               handleClose()
             }}
-          >
-            Add
-          </Button>
+          >Add</Button>
         </Stack>
       </Box>
     </Modal>
-    <Button variant="contained" onClick={handleOpen}>
+    <Button variant="contained"  
+    sx={{ bgcolor: '#967969', '&:hover': { bgcolor: '#785a4e' } }}
+    onClick={handleOpen}>
       Add New Item
     </Button>
     <Box border={'1px solid #333'}>
@@ -152,10 +157,14 @@ export default function Home() {
             <Typography variant={'h3'} color={'#333'} textAlign={'center'}>
               Quantity: {quantity}
             </Typography>
-            <Button variant="contained" onClick={() => addItem(name)}>
+            <Button variant="contained" 
+            sx={{ bgcolor: '#967969', '&:hover': { bgcolor: '#785a4e' } }}
+            onClick={() => addItem(name)}>
               +1
             </Button>
-            <Button variant="contained" onClick={() => removeItem(name)}>
+            <Button variant="contained" 
+            sx={{ bgcolor: '#967969', '&:hover': { bgcolor: '#785a4e' } }}
+            onClick={() => removeItem(name)}>
               Remove
             </Button>
           </Box>
