@@ -32,8 +32,6 @@ export default function RootLayout({ children }) {
             Pantry Tracker
           </Typography>
           <Button color="inherit" component={Link} href="/">Home</Button>
-          {/* <Button color="inherit" component={Link} href="/about">About</Button>
-          <Button color="inherit" component={Link} href="/contact">Contact</Button> */}
         </Toolbar>
       </AppBar>
         <main>
