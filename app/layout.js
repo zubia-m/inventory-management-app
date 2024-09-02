@@ -1,9 +1,12 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { AppBar, Toolbar, Typography, Button, Container, Box } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Component, Box, pageProps } from '@mui/material';
 import Link from 'next/link';
 import React from 'react';
 import Head from 'next/head';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import theme from '@/app/theme';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,9 +22,10 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" type="image/x-icon" /> {/* Use your favicon path */}
       </Head>
         <body className={inter.className}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
         
-        
-        <Box
+        {/* <Box
         width="100vw"
         height="100vh"
         sx={{ 
@@ -29,7 +33,7 @@ export default function RootLayout({ children }) {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
-      >
+      > */}
         {/* Header with Menu */}
         <AppBar position="static" sx={{ bgcolor: '#967969' }}>
           <Toolbar>
@@ -42,8 +46,8 @@ export default function RootLayout({ children }) {
           <main>
               {children}
           </main>
-          </Box>
-        
+          {/* </Box> */}
+          </ThemeProvider>
         </body>
     </html>
   );

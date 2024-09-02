@@ -1,6 +1,7 @@
 'use client'
 
 import {Box, Typography, Button, Modal, TextField, Stack, Container, Paper } from '@mui/material'
+import RecipeSuggestions from '@/app/recipeSuggestions';
 import { firestore } from '@/firebase';
 import { useEffect, useState } from 'react';
 import {
@@ -32,6 +33,8 @@ const style = {
 
 export default function Home() {
   const [inventory, setInventory] = useState([])
+  const [filteredInventory, setFilteredInventory] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const [open, setOpen] = useState(false) 
   const handleOpen = () => setOpen(true) 
@@ -47,11 +50,22 @@ export default function Home() {
       inventoryList.push({ name: doc.id, ...doc.data() })
     })
     setInventory(inventoryList)
+    setFilteredInventory(inventoryList);
+
   }
   
   useEffect(() => {
     updateInventory()
   }, [])
+
+  useEffect(() => {
+    // Filter inventory based on search query
+    const lowercasedQuery = searchQuery.toLowerCase();
+    const filtered = inventory.filter(({ name }) =>
+      name.toLowerCase().includes(lowercasedQuery)
+    );
+    setFilteredInventory(filtered);
+  }, [searchQuery, inventory]);
 
   const addItem = async (item) => {
     const docRef = doc(collection(firestore, 'inventory'), item)
@@ -78,6 +92,7 @@ export default function Home() {
     }
     await updateInventory()
   }
+
 
   return (
     <Box
@@ -126,6 +141,17 @@ export default function Home() {
     onClick={handleOpen}>
       Add New Item
     </Button>
+    <TextField
+        id="search-bar"
+        label="Search Items"
+        variant="outlined"
+        fullWidth
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        sx={{ marginBottom: 2, width: '800px' }}
+      />
+
+
     <Box border={'1px solid #333'}>
       <Box
         width="800px"
@@ -140,7 +166,7 @@ export default function Home() {
         </Typography>
       </Box>
       <Stack width="800px" height="300px" spacing={2} overflow={'auto'}>
-        {inventory.map(({name, quantity}) => (
+        {filteredInventory.map(({name, quantity}) => (
           <Box
             key={name}
             width="100%"
@@ -171,6 +197,27 @@ export default function Home() {
         ))}
       </Stack>
     </Box>
+
+    {/* Recipe Suggestions Box */}
+    <Box border={'1px solid #333'} marginTop={4}>
+        <Box
+          width="500px"
+          height="50px"
+          bgcolor={'#967969'}
+          display={'flex'}
+          justifyContent={'center'}
+          alignItems={'center'}
+        >
+          <Typography variant={'h4'} color={'#333'} textAlign={'center'}>
+            Recipe Suggestions
+          </Typography>
+        </Box>
+        <Stack width="500px" height="100px" spacing={2} overflow={'auto'}>
+          <RecipeSuggestions inventory={inventory} />
+        </Stack>
+      </Box>
+
   </Box>
+  
 );
 }
